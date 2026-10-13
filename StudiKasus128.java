@@ -1,36 +1,66 @@
 import java.util.Scanner;
 public class StudiKasus128 {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        int hargaPerCup = 18000;
+        Scanner sc = new Scanner(System.in);
+      
+    String namaMahasiswa, jenisKegiatan;
+    int jumlahDokumen, peringkatJuara, statusPendanaan;
 
-        // Menampilkan jumlah pesanan dan uang yang di bayar
-        System.out.print("Masukkan jumlah cup: ");
-        int jumlahCup = input.nextInt();
-        System.out.print("Masukkan uang bayar: Rp");
-        int uangBayar = input.nextInt();
-        int totalHarga = jumlahCup * hargaPerCup;
-        int diskon = 0;
-        
-        // Menghitung diskon jika total harga lebih dari atau sama dengan 100000
-        if (totalHarga >= 100000) {
-            diskon = totalHarga * 10 / 100;
-        }
-        int totalBayar = totalHarga - diskon;
-        int kembalian = uangBayar - totalBayar;
-        int kurang = totalBayar - uangBayar;
-        System.out.println("Total harga: Rp" + totalHarga);
-        System.out.println("Diskon: Rp" + diskon);
-        System.out.println("Total bayar: Rp" + totalBayar);
-        
-        // Menentukan apakah uang yang dibayarkan cukup atau kurang
-        if (uangBayar >= totalBayar) {
-            kembalian = uangBayar - totalBayar;
-            System.out.println("Kembalian: " + kembalian);
+    System.out.print("Masukkan nama mahasiswa: ");
+    namaMahasiswa = sc.nextLine();
+
+    System.out.print("Masukkan jenis kegiatan (BELMAWA/BAKORMA/Mandiri/PKM/Lainnya): ");
+    jenisKegiatan = sc.nextLine();
+
+    if (jenisKegiatan.equalsIgnoreCase("Belmawa") || jenisKegiatan.equalsIgnoreCase("Bakorma") || jenisKegiatan.equalsIgnoreCase("Mandiri")) {
+
+        System.out.print("Masukkan peringkat juara: ");
+        peringkatJuara = sc.nextInt();
+
+        if (peringkatJuara >= 1 && peringkatJuara <= 3) {
+            System.out.print("Masukkan jumlah dokumen: ");
+            jumlahDokumen = sc.nextInt();
+
+            if (jumlahDokumen >= 4) {
+                System.out.println("Status : " + "Jumlah doukumen lengkap, Berhak memperoleh pendanaan");
+                statusPendanaan = sc.nextInt();
+            } else {
+                System.out.println("Status : " + "Jumlah doukumen tidak lengkap (kurang " + (4 - jumlahDokumen) + "), Tidak berhak memperoleh pendanaan");
+                
+            }
         } else {
-            kurang = totalBayar - uangBayar;
-            System.out.println("Uang tidak cukup, kurang Rp" + kurang);
+            System.out.println("Pendanaan hanya diberikan kepada juara 1, 2, dan 3. Tidak berhak memperoleh pendanaan.");
         }
-        input.close();
+    } else if (jenisKegiatan.equalsIgnoreCase("PKM")) {
+        System.out.print("Status pendanaan PKM (1=lolos, 0=tidak lolos) ");
+        statusPendanaan = sc.nextInt();
+
+        if (statusPendanaan == 1) {
+            System.out.print("Masukkan jumlah dokumen: ");
+            jumlahDokumen = sc.nextInt();
+            if (jumlahDokumen >= 4) {
+                System.out.println("Status : " + "Berhak memperoleh pendanaan. Kegiatan PKM dengan jumlah dokumen yang lengkap.");
+                
+            } else {
+                System.out.println("Status : " + "Tidak berhak memperoleh pendanaan. Kegiatan PKM tetapi jumlah dokumen tidak lengkap, kurang " + (4 - jumlahDokumen));
+                
+            }
+        } else {
+            System.out.println("Status : " + "Tidak berhak memperoleh pendanaan. Kegiatan PKM tetapi jumlah dokumen tidak lengkap, kurang ");
+           
         }
-    }
+    } else if (jenisKegiatan.equalsIgnoreCase("Lainnya")) {
+         System.out.print("Masukkan jumlah dokumen: ");
+        jumlahDokumen = sc.nextInt();
+
+        } else {
+        System.out.print("Status : " + "Tidak berhak memperoleh pendanaan. Jenis kegiatan tidak termasuk dalam kategori yang berhak memperoleh pendanaan.");
+       
+    sc.close();
+} 
+} 
+}
+
+
+
+
