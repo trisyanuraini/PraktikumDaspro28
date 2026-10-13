@@ -4,6 +4,7 @@ public class StudiKasus128 {
         Scanner input = new Scanner(System.in);
         int hargaPerCup = 18000;
 
+        // Menampilkan jumlah pesanan dan uang yang di bayar
         System.out.print("Masukkan jumlah cup: ");
         int jumlahCup = input.nextInt();
         System.out.print("Masukkan uang bayar: Rp");
@@ -11,6 +12,7 @@ public class StudiKasus128 {
         int totalHarga = jumlahCup * hargaPerCup;
         int diskon = 0;
         
+        // Menghitung diskon jika total harga lebih dari atau sama dengan 100000
         if (totalHarga >= 100000) {
             diskon = totalHarga * 10 / 100;
         }
@@ -21,6 +23,7 @@ public class StudiKasus128 {
         System.out.println("Diskon: Rp" + diskon);
         System.out.println("Total bayar: Rp" + totalBayar);
         
+        // Menentukan apakah uang yang dibayarkan cukup atau kurang
         if (uangBayar >= totalBayar) {
             kembalian = uangBayar - totalBayar;
             System.out.println("Kembalian: " + kembalian);
